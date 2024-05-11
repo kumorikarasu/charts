@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  foundry:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-05-11T03:48:42.295514771Z"
+    description: A Helm chart for Kubernetes
+    digest: fd69226a34027367c8debdede974d419cb509fff6ae3151ae85616b8ffa5f8dc
+    name: foundry
+    type: application
+    urls:
+    - https://github.com/kumorikarasu/helm/releases/download/foundry-0.1.0/foundry-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-05-11T03:48:42.29552505Z"
