@@ -15,11 +15,11 @@ nameOverride: ""
 fullnameOverride: ""
 
 persistence:
-  enabled: true
+  enabled: false
   accessModes:
     - ReadWriteOnce
   size: 64Gi
-  storageClassName: hpe
+  storageClassName: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -49,7 +49,6 @@ securityContext: {}
 service:
   type: LoadBalancer
 # loadBalancerIP: 0.0.0.0
-  port: 80
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
