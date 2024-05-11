@@ -12,11 +12,11 @@ spec:
   ports:
     - port: 3724
       targetPort: 3724
-      protocol: TCP
-      name: http
+      protocol: UDP
+      name: game1
     - port: 27015
       targetPort: 27015
-      protocol: TCP
-      name: game
+      protocol: UDP
+      name: game2
   selector:
     {{- include "foundry.selectorLabels" . | nindent 4 }}
