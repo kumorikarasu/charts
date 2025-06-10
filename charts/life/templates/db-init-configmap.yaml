@@ -19,16 +19,8 @@ data:
     \c life
     
     -- Create user if it doesn't exist
-    DO $$
-    BEGIN
-        IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'lifeapp') THEN
-            CREATE USER lifeapp WITH PASSWORD :'app_password';
-        ELSE
-            -- Update password in case it changed
-            EXECUTE 'ALTER USER lifeapp WITH PASSWORD ' || quote_literal(:'app_password');
-        END IF;
-    END
-    $$;
+    SELECT 'CREATE USER lifeapp'
+    WHERE NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'lifeapp')\gexec
     
     -- Grant privileges (these are idempotent)
     GRANT CONNECT ON DATABASE life TO lifeapp;
@@ -40,3 +32,6 @@ data:
     -- Set default privileges for future objects
     ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO lifeapp;
     ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO lifeapp;
+    
+    -- Set password (always execute to update if changed)
+    ALTER USER lifeapp WITH PASSWORD '${APP_PASSWORD}';

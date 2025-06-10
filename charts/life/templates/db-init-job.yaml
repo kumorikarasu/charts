@@ -26,7 +26,8 @@ spec:
         - |
           export PGPASSWORD="$POSTGRES_ADMIN_PASSWORD"
           echo "Initializing database and user..."
-          psql -h "$POSTGRES_HOST" -U "$POSTGRES_ADMIN_USER" -v app_password="$APP_PASSWORD" -f /scripts/init.sql
+          # Substitute variables in SQL script and execute
+          envsubst < /scripts/init.sql | psql -h "$POSTGRES_HOST" -U "$POSTGRES_ADMIN_USER"
           echo "Database initialization completed successfully"
         env:
         - name: POSTGRES_HOST
