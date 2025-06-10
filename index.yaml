@@ -41,4 +41,15 @@ entries:
     urls:
     - https://github.com/kumorikarasu/helm/releases/download/foundry-0.1.0/foundry-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-11T04:19:59.861097914Z"
+  life:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-06-10T03:39:16.0453855Z"
+    description: A Helm chart for Life simulation application
+    digest: 7a54b9c48ad2bcda8f290d3a14718817adc5d10e87214d26ac4df07ae3ecd60d
+    name: life
+    type: application
+    urls:
+    - https://github.com/kumorikarasu/charts/releases/download/life-0.1.0/life-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-06-10T03:39:16.045399817Z"
