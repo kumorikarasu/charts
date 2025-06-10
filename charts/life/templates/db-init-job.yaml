@@ -26,8 +26,13 @@ spec:
         - |
           export PGPASSWORD="$POSTGRES_ADMIN_PASSWORD"
           echo "Initializing database and user..."
-          # Substitute variables in SQL script and execute
-          envsubst < /scripts/init.sql | psql -h "$POSTGRES_HOST" -U "$POSTGRES_ADMIN_USER"
+          
+          # Create temporary SQL file with substituted password
+          cp /scripts/init.sql /tmp/init_with_password.sql
+          sed -i "s/\\\\\\$\\\\\\{APP_PASSWORD\\\\\\}/$APP_PASSWORD/g" /tmp/init_with_password.sql
+          
+          # Execute the modified SQL
+          psql -h "$POSTGRES_HOST" -U "$POSTGRES_ADMIN_USER" -f /tmp/init_with_password.sql
           echo "Database initialization completed successfully"
         env:
         - name: POSTGRES_HOST

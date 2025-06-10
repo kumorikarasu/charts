@@ -34,4 +34,4 @@ data:
     ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO lifeapp;
     
     -- Set password (always execute to update if changed)
-    ALTER USER lifeapp WITH PASSWORD '${APP_PASSWORD}';
+    ALTER USER lifeapp WITH PASSWORD '\${APP_PASSWORD}';
