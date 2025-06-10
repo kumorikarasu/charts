@@ -60,6 +60,46 @@ spec:
                 secretKeyRef:
                   name: {{ include "simbruna.fullname" . }}-oauth-secrets
                   key: redirect-url
+            - name: FIREBASE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: api-key
+            - name: FIREBASE_AUTH_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: auth-domain
+            - name: FIREBASE_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: project-id
+            - name: FIREBASE_STORAGE_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: storage-bucket
+            - name: FIREBASE_MESSAGING_SENDER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: messaging-sender-id
+            - name: FIREBASE_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: app-id
+            - name: FIREBASE_VAPID_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: vapid-key
+            - name: API_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "simbruna.fullname" . }}-firebase-secrets
+                  key: api-endpoint
           ports:
             - name: http
               containerPort: {{ .Values.api.service.port }}
