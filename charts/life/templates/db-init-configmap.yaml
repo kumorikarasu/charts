@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "simbruna.fullname" . }}-db-init
+  labels:
+    {{- include "simbruna.labels" . | nindent 4 }}
+    app.kubernetes.io/component: db-init
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-10"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+data:
+  init.sql: |
+    -- Create database if it doesn't exist
+    SELECT 'CREATE DATABASE life'
+    WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'life')\gexec
+    
+    -- Connect to the life database
+    \c life
+    
+    -- Create user if it doesn't exist
+    DO $$
+    BEGIN
+        IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'lifeapp') THEN
+            CREATE USER lifeapp WITH PASSWORD :'app_password';
+        ELSE
+            -- Update password in case it changed
+            EXECUTE 'ALTER USER lifeapp WITH PASSWORD ' || quote_literal(:'app_password');
+        END IF;
+    END
+    $$;
+    
+    -- Grant privileges (these are idempotent)
+    GRANT CONNECT ON DATABASE life TO lifeapp;
+    GRANT USAGE ON SCHEMA public TO lifeapp;
+    GRANT CREATE ON SCHEMA public TO lifeapp;
+    GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO lifeapp;
+    GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO lifeapp;
+    
+    -- Set default privileges for future objects
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO lifeapp;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO lifeapp;
