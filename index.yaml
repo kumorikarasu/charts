@@ -44,6 +44,16 @@ entries:
   life:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-06-10T04:46:01.744150399Z"
+    description: A Helm chart for Life simulation application
+    digest: 5dadcbc5a56099c929ccba7a0134a919dc0332a632cef13f6ea112cf9ad96a77
+    name: life
+    type: application
+    urls:
+    - https://github.com/kumorikarasu/charts/releases/download/life-0.1.3/life-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-06-10T04:38:17.989482388Z"
     description: A Helm chart for Life simulation application
     digest: d63e4f6d3759504a4be1681ce4c132c5b8852168354ca5e2f93ab96014ff4a20
@@ -72,4 +82,4 @@ entries:
     urls:
     - https://github.com/kumorikarasu/charts/releases/download/life-0.1.0/life-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-10T04:38:17.989502707Z"
+generated: "2025-06-10T04:46:01.74417263Z"
