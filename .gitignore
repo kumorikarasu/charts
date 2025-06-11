@@ -1,0 +1,22 @@
+# Rust
+target/
+Cargo.lock
+
+# Helm
+*.tgz
+charts/*/charts/
+.cr-release-packages/
+.cr-index/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
